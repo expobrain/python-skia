@@ -33,3 +33,11 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# python-skia
+Makefile
+sip*.cpp
+sip*.o
+sip*.h
+*.sbf
+skia_config.py
