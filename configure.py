@@ -46,7 +46,7 @@ makefile.extra_include_dirs = [
     os.path.join("..", "skia", "include", "core"),
     os.path.join("..", "skia", "include", "config"),
 ]
-makefile.extra_libs = ["skia_core"]
+makefile.extra_libs = ["skia_core", "skia_gr"]
 
 # Generate the Makefile itself.
 makefile.generate()
