@@ -1,13 +1,14 @@
 import sipconfig
 
 
-class HelloModuleMakefile(sipconfig.SIPModuleMakefile):
+class SkiaModuleMakefile(sipconfig.SIPModuleMakefile):
 
     def finalise(self):
         """Finalise the macros.
         """
         # Make sure our C++ library is linked.
         self.extra_libs.append("SkCanvas")
+        self.extra_libs.append("SkBitmap")
 
         # Let the super-class do what it needs to.
-        pyqtconfig.QtGuiModuleMakefile.finalise(self)
+        super(SIPModuleMakefile, self).finalise()

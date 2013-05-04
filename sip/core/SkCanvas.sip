@@ -1,4 +1,4 @@
-%Module SkCanvas
+%Module(name=SkCanvas)
 
 class SkCanvas /NoDefaultCtors/ {
 
