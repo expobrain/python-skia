@@ -46,7 +46,11 @@ makefile.extra_include_dirs = [
     os.path.join("..", "skia", "include", "core"),
     os.path.join("..", "skia", "include", "config"),
 ]
-makefile.extra_libs = ["skia_core", "skia_gr"]
+makefile.extra_libs = [
+    "skia_core", "skia_gr", "skia_skgr", "skia_ports", "skia_sfnt", "skia_opts",
+    "skia_opts_ssse3"
+]
+makefile.extra_lflags = ["-framework ApplicationServices"]
 
 # Generate the Makefile itself.
 makefile.generate()
