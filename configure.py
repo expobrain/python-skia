@@ -24,8 +24,6 @@ class SkiaConfiguration(sipconfig.Configuration):
             if os.path.isdir(d) and not d.startswith("."):
                 self.skia_includes.append(d)
 
-        print(self.skia_includes)
-
         # Build skia libs list
         for lib in glob.iglob(os.path.join(skia_libs_dir, "lib*.a")):
             # Remove path, extention and 'lib' prefix and add it to libs list
