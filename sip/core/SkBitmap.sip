@@ -1,5 +1,3 @@
-%Module SkBitmap
-
 class SkBitmap {
 
     %TypeHeaderCode

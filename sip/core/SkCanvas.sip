@@ -1,5 +1,3 @@
-%Module(name=SkCanvas)
-
 class SkCanvas /NoDefaultCtors/ {
 
     %TypeHeaderCode

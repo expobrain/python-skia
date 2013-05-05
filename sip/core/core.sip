@@ -1,3 +1,4 @@
-%CompositeModule(name=skia.core)
+%Module(name=skia.core)
 
-%Include(name=SkCanvas.sip)
+%Include SkCanvas.sip
+%Include SkBitmap.sip

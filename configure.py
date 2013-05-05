@@ -1,89 +1,106 @@
+import glob
 import os
 import sipconfig
-import glob
 
 
 class SkiaConfiguration(sipconfig.Configuration):
 
+    def __init__(self, skia_includes_dir, skia_libs_dir):
+        super(SkiaConfiguration, self).__init__()
+
+        for d in (skia_includes_dir, skia_libs_dir):
+            if not os.path.exists(d):
+                raise IOError("{} is missing".format(d))
+
+        self.qt_framework = False  # We are not using Qt framework
+        self.skia_includes = []
+        self.skia_libs_dir = skia_libs_dir
+        self.skia_libs = []
+
+        # Build skia include dirs list
+        for d in os.listdir(skia_includes_dir):
+            d = os.path.join(skia_includes_dir, d)
+
+            if os.path.isdir(d) and not d.startswith("."):
+                self.skia_includes.append(d)
+
+        print(self.skia_includes)
+
+        # Build skia libs list
+        for lib in glob.iglob(os.path.join(skia_libs_dir, "lib*.a")):
+            # Remove path, extention and 'lib' prefix and add it to libs list
+            lib = os.path.split(lib)[1]
+            lib = os.path.splitext(lib)[0]
+            lib = lib[3:]
+
+            self.skia_libs.append(lib)
+
+
+class SkiaPreprocessor(object):
+
     SIP_DIR = os.path.join(os.path.dirname(__file__), "sip")
     MODULES = ["core"]
 
-    def __init__(self):
-        super(SkiaConfiguration, self).__init__()
-
-        self.qt_framework = False
-
-    @property
-    def installs(self):
-        return [("skia_config.py", self.default_mod_dir)]
-
-    def generate_code(self):
+    def generate_code(self, config):
         for module in self.MODULES:
             # Calculate SIP module folder and scan for .sip files
             module_installs = []
             module_dir = os.path.join(self.SIP_DIR, module)
-            sip_defs = (os.path.splitext(f)[0]
-                        for f in glob.iglob(os.path.join(module_dir, "*.sip")))
 
             sipconfig.inform("Processing {}...".format(module_dir))
 
-            # Execute 'sip' command and update installs
-            for sip_def in sip_defs:
-                sip_file = "{}.sip".format(sip_def)
-                build_file = "{}.sbf".format(sip_def)
+            # Execute 'sip' command
+            sip_file = os.path.join(module_dir, "{}.sip".format(module))
+            build_file = os.path.join(module_dir, "{}.sbf".format(module))
 
-                sipconfig.inform("..generating code for {}".format(sip_def))
+            os.system(
+                " ".join([
+                    config.sip_bin,
+                    "-c", module_dir,
+                    "-b",
+                    build_file,
+                    sip_file
+                ])
+            )
 
-                os.system(
-                    " ".join([
-                        self.sip_bin, "-c", module_dir, "-b",
-                        build_file,
-                        sip_file
-                    ])
-                )
-
-                # Update installs
-                module_installs.append(
-                    (sip_file, os.path.join(self.default_sip_dir, sip_def)))
+            # Update module installs
+            module_installs.append(
+                (sip_file, os.path.join(config.default_sip_dir, sip_file)))
 
             # Generate module Makefile
             sipconfig.inform("Generating Makefile for '{}'...".format(module))
 
-            makefiles = sipconfig.SIPModuleMakefile(
-                self,
+            makefile = sipconfig.SIPModuleMakefile(
+                config,
                 os.path.join(module_dir, "{}.sbf".format(module)),
                 installs=module_installs,
                 makefile=os.path.join(module_dir, "Makefile")
             )
 
-            makefiles.extra_lib_dirs = [
-                os.path.join("..", "skia", "out", "Release"),
-            ]
-            makefiles.extra_include_dirs = [
-                os.path.join("..", "skia", "include", "core"),
-                os.path.join("..", "skia", "include", "config"),
-            ]
-            makefiles.extra_libs = [
-                "skia_core", "skia_gr", "skia_skgr", "skia_ports", "skia_sfnt",
-                "skia_opts", "skia_opts_ssse3"
-            ]
-            makefiles.extra_lflags = ["-framework ApplicationServices"]
+            makefile.extra_lib_dirs = [config.skia_libs_dir]
+            makefile.extra_include_dirs = config.skia_includes
+            makefile.extra_libs = config.skia_libs
+            makefile.extra_lflags = ["-framework ApplicationServices"]
 
-            makefiles.generate()
+            makefile.generate()
 
         # Generate parent Makefile
         sipconfig.inform("Generating main Makefile...")
         sipconfig.ParentMakefile(
-            configuration=self,
+            configuration=config,
             subdirs=[os.path.join(self.SIP_DIR, m) for m in self.MODULES],
-            installs=self.installs
+            installs=[("skia_config.py", config.default_mod_dir)]
         ).generate()
 
 
 if __name__ == "__main__":
-    # Get the SIP configuration information.
-    config = SkiaConfiguration()
-    config.generate_code()
+    # Get the SIP configuration and pre-process code
+    config = SkiaConfiguration(
+        "/Users/expo/Documents/workspace/skia/include",
+        "/Users/expo/Documents/workspace/skia/out/Release"
+    )
+    preprocessor = SkiaPreprocessor()
+    preprocessor.generate_code(config)
 
     # Now we create the configuration module.  This is done by merging a Python
     # dictionary (whose values are normally determined dynamically) with a
