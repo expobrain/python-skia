@@ -37,7 +37,7 @@ class SkiaConfiguration(sipconfig.Configuration):
 class SkiaPreprocessor(object):
 
     SIP_DIR = os.path.join(os.path.dirname(__file__), "sip")
-    MODULES = ["core"]
+    MODULES = ("core", "effects")
 
     def generate_code(self, config):
         for module in self.MODULES:
