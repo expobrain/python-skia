@@ -1,4 +1,4 @@
-%Module(name=skia.core)
+%Module(name=core)
 
 %Include SkCanvas.sip
 %Include SkBitmap.sip
