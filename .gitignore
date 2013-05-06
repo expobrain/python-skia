@@ -42,3 +42,4 @@ sip*.h
 *.sbf
 skia_config.py
 .DS_Store
+.settings
