@@ -46,13 +46,15 @@ class SkiaConfiguration(sipconfig.Configuration):
 
 class SkiaPreprocessor(object):
 
-    SIP_DIR = os.path.join(os.path.dirname(__file__), "sip")
+    SIP_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "sip"))
     MODULES = ("core", "effects")
 
     def generate_code(self, config):
+        sip_install_dir = os.path.join(config.default_sip_dir, "skia")
+        module_install_dir = os.path.join(config.default_mod_dir, "skia")
+
         for module in self.MODULES:
             # Calculate SIP module folder and scan for .sip files
-            module_installs = []
             module_dir = os.path.join(self.SIP_DIR, module)
 
             sipconfig.inform("Processing {}...".format(module_dir))
@@ -71,17 +73,14 @@ class SkiaPreprocessor(object):
                 ])
             )
 
-            # Update module installs
-            module_installs.append(
-                (sip_file, os.path.join(config.default_sip_dir, sip_file)))
-
             # Generate module Makefile
             sipconfig.inform("Generating Makefile for '{}'...".format(module))
 
             makefile = sipconfig.SIPModuleMakefile(
                 config,
                 os.path.join(module_dir, "{}.sbf".format(module)),
-                installs=module_installs,
+                install_dir=module_install_dir,
+                installs=[(sip_file, os.path.join(sip_install_dir, module))],
                 makefile=os.path.join(module_dir, "Makefile")
             )
 

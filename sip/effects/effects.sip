@@ -1,3 +1,3 @@
-%Module(name=effects)
+%Module(name=skia.effects)
 
 %Include SkColorMatrix.sip
