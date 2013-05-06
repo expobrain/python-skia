@@ -1,13 +1,23 @@
+# -*- coding: utf-8 -*-
+
+from optparse import OptionParser
 import glob
 import os
 import sipconfig
+import sys
 
 
 class SkiaConfiguration(sipconfig.Configuration):
 
     def __init__(self, skia_includes_dir, skia_libs_dir):
+        # Call superclass
         super(SkiaConfiguration, self).__init__()
 
+        # Absolute paths
+        skia_includes_dir = os.path.abspath(skia_includes_dir)
+        skia_libs_dir = os.path.abspath(skia_libs_dir)
+
+        # Check
         for d in (skia_includes_dir, skia_libs_dir):
             if not os.path.exists(d):
                 raise IOError("{} is missing".format(d))
@@ -92,11 +102,29 @@ class SkiaPreprocessor(object):
 
 
 if __name__ == "__main__":
-    # Get the SIP configuration and pre-process code
-    config = SkiaConfiguration(
-        "/Users/expo/Documents/workspace/skia/include",
-        "/Users/expo/Documents/workspace/skia/out/Release"
+    # Get command line options
+    parser = OptionParser()
+    parser.add_option(
+        "-L", "--skia-libraries", dest="skia_libs_dir",
+        help="Skia libraries directory"
     )
+    parser.add_option(
+        "-I", "--skia-includes", dest="skia_include_dir",
+        help="Skia headers directory"
+    )
+
+    options, args = parser.parse_args()
+
+    if not options.skia_include_dir:
+        parser.error("Missing Skia include directory")
+        sys.exit(1)
+
+    if not options.skia_libs_dir:
+        parser.error("Missing Skia libraries directory")
+        sys.exit(1)
+
+    # Get the SIP configuration and pre-process code
+    config = SkiaConfiguration(options.skia_include_dir, options.skia_libs_dir)
     preprocessor = SkiaPreprocessor()
     preprocessor.generate_code(config)
 
@@ -117,4 +145,5 @@ if __name__ == "__main__":
 
     # This creates the helloconfig.py module from the helloconfig.py.in
     # template and the dictionary.
-    sipconfig.create_config_module("skia_config.py", "skia_config.py.in", content)
+    sipconfig.create_config_module(
+        "skia_config.py", "skia_config.py.in", content)
