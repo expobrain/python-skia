@@ -26,6 +26,7 @@ class SkiaConfiguration(sipconfig.Configuration):
         self.skia_includes = []
         self.skia_libs_dir = skia_libs_dir
         self.skia_libs = []
+        self.skia_mod_dir = os.path.join(self.default_mod_dir, "skia")
 
         # Build skia include dirs list
         for d in os.listdir(skia_includes_dir):
@@ -36,7 +37,7 @@ class SkiaConfiguration(sipconfig.Configuration):
 
         # Build skia libs list
         for lib in glob.iglob(os.path.join(skia_libs_dir, "lib*.a")):
-            # Remove path, extention and 'lib' prefix and add it to libs list
+            # Remove path, extension and 'lib' prefix and add it to libs list
             lib = os.path.split(lib)[1]
             lib = os.path.splitext(lib)[0]
             lib = lib[3:]
@@ -96,8 +97,12 @@ class SkiaPreprocessor(object):
         sipconfig.ParentMakefile(
             configuration=config,
             subdirs=[os.path.join(self.SIP_DIR, m) for m in self.MODULES],
-            installs=[("skia_config.py", config.default_mod_dir)]
+            installs=[(f, config.skia_mod_dir) for f in self.package_installs],
         ).generate()
+
+    @property
+    def package_installs(self):
+        return ["skia_config.py", os.path.join(self.SIP_DIR, "__init__.py")]
 
 
 if __name__ == "__main__":
