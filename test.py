@@ -1,2 +1,0 @@
-import SkCanvas
-import SkBitmap
