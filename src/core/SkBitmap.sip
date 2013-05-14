@@ -19,4 +19,21 @@ public:
 
     SkBitmap();
     SkBitmap(const SkBitmap& src);
+
+    // Method not exported in Java nor Python
+    // void swap(SkBitmap& other);
+
+    bool empty() const;
+    bool isNull() const;
+    Config config() const;
+    int width() const;
+    int height() const;
+    // FIXME: size_t rowBytes() const;
+    int shiftPerPixel() const;
+    int bytesPerPixel() const;
+    int rowBytesAsPixels() const;
+    void* getPixels();
+    // FIXME: size_t getSize() const;
+    // FIXME: size_t getSafeSize() const;
+    // Sk64 getSize64() const;
 };

@@ -1,1 +1,2 @@
 - Fix size_t
+- Implement void* getPixels() to return a bytearray
