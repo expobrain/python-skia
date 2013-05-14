@@ -80,6 +80,7 @@ class SkiaPreprocessor(object):
             ]
 
             if subprocess.call(cmd):
+                sipconfig.error(sip_file)
                 sys.exit(1)
 
             # Generate module Makefile
