@@ -1,2 +1,3 @@
 - Fix size_t
 - Implement void* getPixels() to return a bytearray
+- Complete Sk64 export
