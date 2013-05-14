@@ -4,6 +4,7 @@ from optparse import OptionParser
 import glob
 import os
 import sipconfig
+import subprocess
 import sys
 
 
@@ -71,14 +72,15 @@ class SkiaPreprocessor(object):
                 os.makedirs(build_dir)
 
             # Execute 'sip' command
-            os.system(
-                " ".join([
-                    config.sip_bin,
-                    "-c", build_dir,
-                    "-b", build_file,
-                    sip_file
-                ])
-            )
+            cmd = [
+                config.sip_bin,
+                "-c", build_dir,
+                "-b", build_file,
+                sip_file
+            ]
+
+            if subprocess.call(cmd):
+                sys.exit(1)
 
             # Generate module Makefile
             sipconfig.inform("Generating Makefile for '{}'...".format(module))
