@@ -48,6 +48,7 @@ class SkiaConfiguration(sipconfig.Configuration):
 class SkiaPreprocessor(object):
 
     SIP_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "src"))
+    BUILD_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "build"))
     MODULES = ("core", "effects")
 
     def generate_code(self, config):
@@ -60,16 +61,21 @@ class SkiaPreprocessor(object):
 
             sipconfig.inform("Processing {}...".format(module_dir))
 
-            # Execute 'sip' command
+            # Calculate module paths
             sip_file = os.path.join(module_dir, "{}.sip".format(module))
-            build_file = os.path.join(module_dir, "{}.sbf".format(module))
+            build_dir = os.path.join(self.BUILD_DIR, module)
+            build_file = os.path.join(build_dir, "{}.sbf".format(module))
 
+            # Creating paths
+            if not os.path.exists(build_dir):
+                os.makedirs(build_dir)
+
+            # Execute 'sip' command
             os.system(
                 " ".join([
                     config.sip_bin,
-                    "-c", module_dir,
-                    "-b",
-                    build_file,
+                    "-c", build_dir,
+                    "-b", build_file,
                     sip_file
                 ])
             )
@@ -79,10 +85,11 @@ class SkiaPreprocessor(object):
 
             makefile = sipconfig.SIPModuleMakefile(
                 config,
-                os.path.join(module_dir, "{}.sbf".format(module)),
+                build_file,
+                dir=build_dir,
                 install_dir=module_install_dir,
                 installs=[(sip_file, os.path.join(sip_install_dir, module))],
-                makefile=os.path.join(module_dir, "Makefile")
+                makefile=os.path.join(build_dir, "Makefile")
             )
 
             makefile.extra_lib_dirs = [config.skia_libs_dir]
@@ -96,7 +103,7 @@ class SkiaPreprocessor(object):
         sipconfig.inform("Generating main Makefile...")
         sipconfig.ParentMakefile(
             configuration=config,
-            subdirs=[os.path.join(self.SIP_DIR, m) for m in self.MODULES],
+            subdirs=[os.path.join(self.BUILD_DIR, m) for m in self.MODULES],
             installs=[(f, config.skia_mod_dir) for f in self.package_installs],
         ).generate()
 
