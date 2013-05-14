@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from skia.core import SkBitmap
+from skia.core import SkBitmap, Sk64
 import unittest
 
 
@@ -53,12 +53,49 @@ class SkBitmapTests(unittest.TestCase):
     def test_get_size(self):
         self.assertEqual(SkBitmap().getSize(), 0)
 
-#     def test_get_size_64(self):
-#         self.assertIsInstance(SkBitmap().getSize64(), Sk64)
+    def test_get_size_64(self):
+        self.assertIsInstance(SkBitmap().getSize64(), Sk64)
 
     @unittest.skip("FIXME")
     def test_get_safe_size(self):
         self.assertEqual(SkBitmap().getSafeSize(), 0)
+
+    def test_get_safe_size_64(self):
+        self.assertIsInstance(SkBitmap().getSafeSize64(), Sk64)
+
+    def test_is_immutable(self):
+        self.assertIsInstance(SkBitmap().isImmutable(), bool)
+
+    def test_is_volatile(self):
+        self.assertIsInstance(SkBitmap().isVolatile(), bool)
+
+    def test_is_opaque(self):
+        self.assertIsInstance(SkBitmap().isOpaque(), bool)
+
+    @unittest.skip("FIXME")
+    def test_set_config(self):
+        b = SkBitmap()
+        b.setConfig(SkBitmap.kARGB_8888_Config, 100, 200)
+
+        self.assertEqual(b.config(), SkBitmap.kARGB_8888_Config)
+        self.assertEqual(b.width(), 100)
+        self.assertEqual(b.height(), 200)
+
+    def test_set_immutable(self):
+        b = SkBitmap()
+        self.assertFalse(b.isImmutable())
+
+        b.setImmutable()
+        self.assertTrue(b.isImmutable())
+
+    @unittest.skip("FIXME")
+    def test_set_is_opaque(self):
+        b = SkBitmap()
+
+        for v in (True, False):
+            b.setIsOpaque(v)
+
+            self.assertEqual(b.isOpaque(), v)
 
     @unittest.skip("FIXME")
     def test_get_pixels(self):
