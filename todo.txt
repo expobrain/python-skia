@@ -1,4 +1,5 @@
 - Fix size_t
 - Implement SkBitmap.getPixels() to return a bytearray
 - Complete Sk64 export
+- Complete SkColorTable export
 - in SkBitmap.getBound() return a SkRect instead of modifying a SkRect instance
