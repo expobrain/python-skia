@@ -4,4 +4,5 @@
 %Include SkBitmap.sip
 %Include SkCanvas.sip
 %Include SkColorTable.sip
+%Include SkPixelRef.sip
 %Include SkRect.sip

@@ -7,7 +7,7 @@ General
 SkBitmap
 --------
 
-- Implement getPixels() to return a bytearray
+- implement getPixels() to return a bytearray
 - in getBound() return a SkRect instead of modifying a SkRect instance
 - use bytearray as first parameter of setPixels()
 - implement copyPixels()
@@ -16,5 +16,6 @@ SkBitmap
 Others
 ------
 
-- Complete Sk64 export
+- complete Sk64 export
 - Complete SkColorTable export
+- complete SkPixelRef
