@@ -1,3 +1,4 @@
 - Fix size_t
-- Implement void* getPixels() to return a bytearray
+- Implement SkBitmap.getPixels() to return a bytearray
 - Complete Sk64 export
+- in SkBitmap.getBound() return a SkRect instead of modifying a SkRect instance

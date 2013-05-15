@@ -72,6 +72,52 @@ class SkBitmapTests(unittest.TestCase):
     def test_is_opaque(self):
         self.assertIsInstance(SkBitmap().isOpaque(), bool)
 
+    def test_reset(self):
+        try:
+            SkBitmap().reset()
+        except Exception as e:
+            self.fail(e)
+
+    def test_compute_bytes_per_pixel(self):
+        self.assertIsInstance(
+            SkBitmap.ComputeBytesPerPixel(SkBitmap.kA8_Config), int)
+
+    def test_compute_shift_per_pixel(self):
+        self.assertIsInstance(
+            SkBitmap.ComputeShiftPerPixel(SkBitmap.kA8_Config), int)
+
+    def test_compute_size_64(self):
+        self.assertIsInstance(
+            SkBitmap.ComputeSize64(SkBitmap.kA8_Config, 1, 1), Sk64)
+
+    def test_compute_is_opaque(self):
+        self.assertIsInstance(SkBitmap.ComputeIsOpaque(SkBitmap()), int)
+
+    def test_compute_and_set_opaque_predicate(self):
+        try:
+            SkBitmap().computeAndSetOpaquePredicate()
+        except Exception as e:
+            self.fail(e)
+
+#     def test_get_bounds(self):
+#         for rect in (Skrect(), SkIRect()):
+#             try:
+#                 SkBitmap().getBound(rect)
+#             except Exception as e:
+#                 self.fail(e)
+
+    @unittest.skip("FIXME")
+    def test_compute_size(self):
+        self.assertIsInstance(
+            SkBitmap.ComputeSize(SkBitmap.kA8_Config, 1, 1), int)
+
+    @unittest.skip("FIXME")
+    def test_compute_row_bytes(self):
+        try:
+            SkBitmap.ComputeRowBytes(SkBitmap.kA1_Config, 100)
+        except Exception as e:
+            self.fail(e)
+
     @unittest.skip("FIXME")
     def test_set_config(self):
         b = SkBitmap()
@@ -87,6 +133,13 @@ class SkBitmapTests(unittest.TestCase):
 
         b.setImmutable()
         self.assertTrue(b.isImmutable())
+
+    def test_set_volatile(self):
+        b = SkBitmap()
+        self.assertFalse(b.isVolatile())
+
+        b.setIsVolatile(True)
+        self.assertTrue(b.isVolatile())
 
     @unittest.skip("FIXME")
     def test_set_is_opaque(self):

@@ -42,7 +42,17 @@ public:
     bool isOpaque() const;
     void setIsOpaque(bool);
     bool isVolatile() const;
-
+    void setIsVolatile(bool);
+    void reset();
+    // FIXME: static size_t ComputeRowBytes(Config c, int width);
+    static int ComputeBytesPerPixel(Config c);
+    static int ComputeShiftPerPixel(Config c);
+    static Sk64 ComputeSize64(Config, int width, int height);
+    // FIXME: static size_t ComputeSize(Config, int width, int height);
+    static bool ComputeIsOpaque(const SkBitmap&);
+    void computeAndSetOpaquePredicate();
+    // void getBounds(SkRect* bounds) const;
+    // void getBounds(SkIRect* bounds) const;
 
     // FIXME: void setConfig(Config, int width, int height, size_t rowBytes = 0);
 };
