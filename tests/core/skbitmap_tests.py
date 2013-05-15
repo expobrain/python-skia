@@ -107,6 +107,17 @@ class SkBitmapTests(unittest.TestCase):
                 self.fail(e)
 
     @unittest.skip("FIXME")
+    def test_set_pixels(self):
+        pass
+
+    def test_alloc_pixels(self):
+        self.assertIsInstance(SkBitmap().allocPixels(), bool)
+
+    @unittest.skip("FIXME")
+    def test_copy_pixels(self):
+        pass
+
+    @unittest.skip("FIXME")
     def test_compute_size(self):
         self.assertIsInstance(
             SkBitmap.ComputeSize(SkBitmap.kA8_Config, 1, 1), int)

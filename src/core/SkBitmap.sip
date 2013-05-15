@@ -53,6 +53,10 @@ public:
     void computeAndSetOpaquePredicate();
     void getBounds(SkRect* bounds) const;
     void getBounds(SkIRect* bounds) const;
-
     // FIXME: void setConfig(Config, int width, int height, size_t rowBytes = 0);
+    void setPixels(void* p, SkColorTable* ctable = NULL);
+    // FIXME: bool copyPixelsTo(void* const dst, size_t dstSize, size_t dstRowBytes = 0,
+    //                 bool preserveDstPad = false) const;
+    bool allocPixels(SkColorTable* ctable = NULL);
+    // Skipped: bool allocPixels(Allocator* allocator, SkColorTable* ctable);
 };
