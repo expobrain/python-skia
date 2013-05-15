@@ -51,8 +51,8 @@ public:
     // FIXME: static size_t ComputeSize(Config, int width, int height);
     static bool ComputeIsOpaque(const SkBitmap&);
     void computeAndSetOpaquePredicate();
-    // void getBounds(SkRect* bounds) const;
-    // void getBounds(SkIRect* bounds) const;
+    void getBounds(SkRect* bounds) const;
+    void getBounds(SkIRect* bounds) const;
 
     // FIXME: void setConfig(Config, int width, int height, size_t rowBytes = 0);
 };

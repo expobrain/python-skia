@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from skia.core import SkBitmap, Sk64
+from skia.core import SkBitmap, Sk64, SkRect, SkIRect
 import unittest
 
 
@@ -99,12 +99,12 @@ class SkBitmapTests(unittest.TestCase):
         except Exception as e:
             self.fail(e)
 
-#     def test_get_bounds(self):
-#         for rect in (Skrect(), SkIRect()):
-#             try:
-#                 SkBitmap().getBound(rect)
-#             except Exception as e:
-#                 self.fail(e)
+    def test_get_bounds(self):
+        for rect in (SkRect(), SkIRect()):
+            try:
+                SkBitmap().getBounds(rect)
+            except Exception as e:
+                self.fail(e)
 
     @unittest.skip("FIXME")
     def test_compute_size(self):
