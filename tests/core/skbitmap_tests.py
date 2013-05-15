@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from skia.core import SkBitmap, Sk64, SkRect, SkIRect
+from skia.core import SkBitmap, Sk64, SkRect, SkIRect, SkPixelRef
 import unittest
 
 
@@ -99,6 +99,21 @@ class SkBitmapTests(unittest.TestCase):
         except Exception as e:
             self.fail(e)
 
+    def test_loc_pixels_are_writable(self):
+        self.assertIsInstance(SkBitmap().lockPixelsAreWritable(), bool)
+
+    def test_lock_pixels(self):
+        try:
+            SkBitmap().lockPixels()
+        except Exception as e:
+            self.fail(e)
+
+    def test_unlock_pixels(self):
+        try:
+            SkBitmap().unlockPixels()
+        except Exception as e:
+            self.fail(e)
+
     def test_get_bounds(self):
         for rect in (SkRect(), SkIRect()):
             try:
@@ -112,6 +127,20 @@ class SkBitmapTests(unittest.TestCase):
 
     def test_alloc_pixels(self):
         self.assertIsInstance(SkBitmap().allocPixels(), bool)
+
+    def test_pixel_ref(self):
+        self.assertIsNone(SkBitmap().pixelRef())  # Default value
+
+    @unittest.skip("FIXME")
+    def test_pixel_ref_offset(self):
+        pass
+
+    @unittest.skip("FIXME")
+    def test_set_pixel_ref(self):
+        b = SkBitmap()
+        b.setPixelRef(SkPixelRef())
+
+        self.assertIsInstance(SkBitmap().pixelRef(), SkPixelRef)
 
     @unittest.skip("FIXME")
     def test_copy_pixels(self):

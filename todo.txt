@@ -11,6 +11,7 @@ SkBitmap
 - in getBound() return a SkRect instead of modifying a SkRect instance
 - use bytearray as first parameter of setPixels()
 - implement copyPixels()
+- fix pixelRef()
 
 
 Others

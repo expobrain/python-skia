@@ -59,4 +59,10 @@ public:
     //                 bool preserveDstPad = false) const;
     bool allocPixels(SkColorTable* ctable = NULL);
     // Skipped: bool allocPixels(Allocator* allocator, SkColorTable* ctable);
+    SkPixelRef* pixelRef() const;
+    // FIXME: size_t pixelRefOffset() const;
+    // FIXME: SkPixelRef* setPixelRef(SkPixelRef* pr, size_t offset = 0);
+    void lockPixels() const;
+    void unlockPixels() const;
+    bool lockPixelsAreWritable() const;
 };
