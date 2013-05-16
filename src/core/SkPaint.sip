@@ -1,4 +1,4 @@
-struct SkPaint {
+class SkPaint {
 
     %TypeHeaderCode
     #include <SkPaint.h>
