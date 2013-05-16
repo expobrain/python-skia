@@ -12,9 +12,10 @@ SkBitmap
 - use bytearray as first parameter of setPixels()
 - implement copyPixels()
 - fix pixelRef()
-- pythnic implementation for extractSubset()
-- pythnic implementation for copyTo()
-- pythnic implementation for deepCopyTo()
+- pythonic implementation for extractSubset()
+- pythonic implementation for copyTo()
+- pythonic implementation for deepCopyTo()
+- implement SkAutoLockPixels as a context manager
 
 
 Others

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from skia.core import (SkBitmap, Sk64, SkRect, SkIRect, SkPixelRef, SkGpuTexture,
-    SkColorTable, SkPaint, SkIPoint)
+    SkColorTable, SkPaint, SkIPoint, SkAutoLockPixels)
 import unittest
 
 
@@ -279,3 +279,11 @@ class SkBitmapTests(unittest.TestCase):
     @unittest.skip("FIXME")
     def test_get_pixels(self):
         self.assertIsInstance(SkBitmap().getPixels(), bytearray)
+
+
+class SkAutoLockPixelsTests(unittest.TestCase):
+
+    def test_instance(self):
+        self.assertIsInstance(SkAutoLockPixels(SkBitmap()), SkAutoLockPixels)
+        self.assertIsInstance(
+            SkAutoLockPixels(SkBitmap(), False), SkAutoLockPixels)

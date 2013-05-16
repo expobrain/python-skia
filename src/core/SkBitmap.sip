@@ -90,3 +90,14 @@ public:
     // Not exported: void flatten(SkFlattenableWriteBuffer&);
     // Not exported: void unflatten(SkFlattenableReadBuffer&);
 };
+
+
+class SkAutoLockPixels /NoDefaultCtors/ {
+
+    %TypeHeaderCode
+    #include <SkBitmap.h>
+    %End
+
+public:
+    SkAutoLockPixels(SkBitmap& bm, bool doLock = true);
+};
