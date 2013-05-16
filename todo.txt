@@ -12,6 +12,9 @@ SkBitmap
 - use bytearray as first parameter of setPixels()
 - implement copyPixels()
 - fix pixelRef()
+- pythnic implementation for extractSubset()
+- pythnic implementation for copyTo()
+- pythnic implementation for deepCopyTo()
 
 
 Others
@@ -19,5 +22,6 @@ Others
 
 - complete Sk64 export
 - complete SkColorTable export
+- complete SkPaint
 - complete SkPixelRef
 - complete SkRegion
