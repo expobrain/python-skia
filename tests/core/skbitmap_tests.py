@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from skia.core import SkBitmap, Sk64, SkRect, SkIRect, SkPixelRef
+from skia.core import (SkBitmap, Sk64, SkRect, SkIRect, SkPixelRef, SkGpuTexture,
+    SkColorTable, SkPaint, SkIPoint)
 import unittest
 
 
@@ -101,6 +102,88 @@ class SkBitmapTests(unittest.TestCase):
             SkBitmap().computeAndSetOpaquePredicate()
         except Exception as e:
             self.fail(e)
+
+    @unittest.skip("FIX ME")
+    def test_get_texture(self):
+        b = SkBitmap()
+        b.setConfig(SkBitmap.kA8_Config, 1, 1)
+
+        self.assertIsInstance(b.getTexture(), SkGpuTexture)
+
+    @unittest.skip("FIX ME")
+    def test_get_index_8_color(self):
+        self.assertIsInstance(SkBitmap().getIndex8Color(0, 0), int)
+
+    def test_get_color(self):
+        self.assertIsInstance(SkBitmap().getColor(0, 0), int)
+
+    def test_can_copy_to(self):
+        self.assertIsInstance(SkBitmap().canCopyTo(SkBitmap.kA8_Config), bool)
+
+    def test_has_mip_map(self):
+        self.assertIsInstance(SkBitmap().hasMipMap(), bool)
+
+    def test_extract_alpha(self):
+        self.assertIsInstance(SkBitmap().extractAlpha(SkBitmap()), bool)
+        self.assertIsInstance(
+            SkBitmap().extractAlpha(SkBitmap(), SkPaint(), SkIPoint()), bool)
+
+    def test_extract_mip_level(self):
+        self.assertIsInstance(
+            SkBitmap().extractMipLevel(SkBitmap(), 0, 0), int)
+
+    def test_free_mip_map(self):
+        try:
+            SkBitmap().freeMipMap()
+        except Exception as e:
+            self.fail(e)
+
+    def test_build_mip_map(self):
+        try:
+            SkBitmap().buildMipMap()
+            SkBitmap().buildMipMap(True)
+        except Exception as e:
+            self.fail(e)
+
+    def test_scroll_rect(self):
+        self.assertIsInstance(SkBitmap().scrollRect(SkIRect(), 0, 0), bool)
+
+    def test_erase_RGB(self):
+        try:
+            SkBitmap().eraseRGB(0xff, 0xff, 0xff)
+        except Exception as e:
+            self.fail(e)
+
+    def test_erase_color(self):
+        try:
+            SkBitmap().eraseColor(0x00)
+        except Exception as e:
+            self.fail(e)
+
+    def test_erase_ARGB(self):
+        try:
+            SkBitmap().eraseARGB(0xff, 0xff, 0xff, 0xff)
+        except Exception as e:
+            self.fail(e)
+
+    @unittest.skip("FIX ME")
+    def test_get_color_table(self):
+        self.assertIsInstance(SkBitmap().getColorTable(), SkColorTable)
+
+    def test_get_color_table_default(self):
+        self.assertIsNone(SkBitmap().getColorTable())
+
+    def test_get_generation_id(self):
+        self.assertIsInstance(SkBitmap().getGenerationID(), int)
+
+    def test_notify_pixels_changed(self):
+        try:
+            SkBitmap().notifyPixelsChanged()
+        except Exception as e:
+            self.fail(e)
+
+    def test_get_texture_null(self):
+        self.assertIsNone(SkBitmap().getTexture())
 
     def test_loc_pixels_are_writable(self):
         self.assertIsInstance(SkBitmap().lockPixelsAreWritable(), bool)
