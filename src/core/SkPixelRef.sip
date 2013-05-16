@@ -6,3 +6,11 @@ class SkPixelRef /NoDefaultCtors/ {
 
     //explicit SkPixelRef(SkBaseMutex* mutex = NULL);
 };
+
+
+class SkGpuTexture /NoDefaultCtors/ {
+
+    %TypeHeaderCode
+    #include <SkPixelRef.h>
+    %End
+};

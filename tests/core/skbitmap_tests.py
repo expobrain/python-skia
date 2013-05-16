@@ -93,6 +93,9 @@ class SkBitmapTests(unittest.TestCase):
     def test_compute_is_opaque(self):
         self.assertIsInstance(SkBitmap.ComputeIsOpaque(SkBitmap()), int)
 
+    def test_ready_to_draw(self):
+        self.assertIsInstance(SkBitmap().readyToDraw(), bool)
+
     def test_compute_and_set_opaque_predicate(self):
         try:
             SkBitmap().computeAndSetOpaquePredicate()
