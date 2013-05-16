@@ -18,5 +18,6 @@ Others
 ------
 
 - complete Sk64 export
-- Complete SkColorTable export
+- complete SkColorTable export
 - complete SkPixelRef
+- complete SkRegion
