@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from skia.core import (SkBitmap, Sk64, SkRect, SkIRect, SkPixelRef, SkGpuTexture,
-    SkColorTable, SkPaint, SkIPoint, SkAutoLockPixels)
+    SkColorTable, SkPaint, SkIPoint, SkAutoLockPixels, SkAutoLockColors)
 import unittest
 
 
@@ -287,3 +287,17 @@ class SkAutoLockPixelsTests(unittest.TestCase):
         self.assertIsInstance(SkAutoLockPixels(SkBitmap()), SkAutoLockPixels)
         self.assertIsInstance(
             SkAutoLockPixels(SkBitmap(), False), SkAutoLockPixels)
+
+
+class SkAutoLockColorsTests(unittest.TestCase):
+
+    def test_instance(self):
+        self.assertIsInstance(SkAutoLockColors(), SkAutoLockColors)
+        self.assertIsInstance(SkAutoLockColors(SkBitmap()), SkAutoLockColors)
+#         self.assertIsInstance(
+#             SkAutoLockColors(SkColorTable(16)), SkAutoLockColors)
+
+    @unittest.skip("FIXME")
+    def test_colors(self):
+        self.assertIsNone(SkAutoLockColors().colors())
+        self.assertIsNone(SkAutoLockColors(SkBitmap()).colors())

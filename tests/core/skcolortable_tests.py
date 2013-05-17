@@ -5,4 +5,8 @@ import unittest
 
 
 class SkColorTableTests(unittest.TestCase):
-    pass
+
+    @unittest.skip("FIXME")
+    def testInstance(self):
+        self.assertIsInstance(SkColorTable(16), SkColorTable)
+        self.assertIsInstance(SkColorTable(SkColorTable(16)), SkColorTable)

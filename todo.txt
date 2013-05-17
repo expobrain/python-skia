@@ -16,13 +16,19 @@ SkBitmap
 - pythonic implementation for copyTo()
 - pythonic implementation for deepCopyTo()
 - implement SkAutoLockPixels as a context manager
+- fix signature SkAutoLockColors(SkColorTable* ctable)
+
+
+SkColorTable
+------------
+
+- fix signature SkColorTable(SkPMColor colors[], int count)
 
 
 Others
 ------
 
 - complete Sk64 export
-- complete SkColorTable export
 - complete SkPaint
 - complete SkPoint
 - complete SkPixelRef

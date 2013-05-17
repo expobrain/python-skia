@@ -101,3 +101,19 @@ class SkAutoLockPixels /NoDefaultCtors/ {
 public:
     SkAutoLockPixels(SkBitmap& bm, bool doLock = true);
 };
+
+
+class SkAutoLockColors /NoDefaultCtors/ {
+
+    %TypeHeaderCode
+    #include <SkBitmap.h>
+    %End
+
+public:
+    SkAutoLockColors();
+    SkAutoLockColors(SkBitmap& bm);
+    // FIXME: SkAutoLockColors(SkColorTable* ctable);
+    // FIXME: SkPMColor* colors();
+    // FIXME: SkPMColor* lockColors(SkColorTable* ctable);
+    // FIXME: SkPMColor* lockColors(const SkBitmap& bm);
+};
