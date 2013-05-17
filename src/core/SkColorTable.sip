@@ -1,4 +1,4 @@
-%Include(name=../typedefs.sip)
+%Include(name=../config/sk_stdint.sip)
 
 
 class SkColorTable {
