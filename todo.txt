@@ -23,6 +23,8 @@ SkColorTable
 ------------
 
 - fix signature SkColorTable(SkPMColor colors[], int count)
+- implement SkPMColor operator[](int index) with __getitem__
+- implement lock/unlock methods as context managers
 
 
 Others
