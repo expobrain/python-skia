@@ -26,6 +26,13 @@ Sk64
 - seems like void mul(int32_t) is missing
 
 
+SkSize
+------
+
+- SkTSize is not exported
+_ implement SkSize.__eq__ operator
+
+
 SkColorTable
 ------------
 

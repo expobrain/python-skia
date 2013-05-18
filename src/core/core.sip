@@ -13,4 +13,5 @@
 %Include SkRegion.sip
 %Include SkRect.sip
 %Include SkScalar.sip
+%Include SkSize.sip
 %Include SkTypes.sip
