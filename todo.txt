@@ -43,3 +43,4 @@ Others
 - complete core/SkPixelRef
 - complete core/SkRegion
 - complete core/SkFixed
+- complete core/SkDevice
