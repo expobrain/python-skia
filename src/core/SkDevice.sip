@@ -4,5 +4,5 @@ class SkDevice {
     #include <SkDevice.h>
     %End
 
-    SkDevice(SkBitmap& bitmap);
+    SkDevice(const SkBitmap& bitmap);
 };
