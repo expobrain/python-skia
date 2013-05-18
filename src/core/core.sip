@@ -12,4 +12,5 @@
 %Include SkPixelRef.sip
 %Include SkRegion.sip
 %Include SkRect.sip
+%Include SkScalar.sip
 %Include SkTypes.sip

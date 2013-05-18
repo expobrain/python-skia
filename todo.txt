@@ -44,3 +44,4 @@ Others
 - complete core/SkRegion
 - complete core/SkFixed
 - complete core/SkDevice
+- complete core/SkScalar
