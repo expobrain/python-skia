@@ -26,6 +26,12 @@ Sk64
 - seems like void mul(int32_t) is missing
 
 
+SkDeviceProperties
+------------------
+
+- implements Geometry.MakeDefault() constructors
+
+
 SkSize
 ------
 

@@ -6,6 +6,7 @@
 %Include SkColor.sip
 %Include SkColorTable.sip
 %Include SkDevice.sip
+%Include SkDeviceProperties.sip
 %Include SkFixed.sip
 %Include SkPaint.sip
 %Include SkPoint.sip
