@@ -1,7 +1,7 @@
 %Include(name=../config/sk_stdint.sip)
 
 
-struct SkDeviceProperties /NoDefaultCtors/ {
+struct SkDeviceProperties {
 
     %TypeHeaderCode
     #include <SkScalar.h>
