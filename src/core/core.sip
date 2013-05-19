@@ -1,4 +1,4 @@
-%Module(name=skia.core)
+%Module(name=skia.core, keyword_arguments="Optional")
 
 %Include Sk64.sip
 %Include SkBitmap.sip
