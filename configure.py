@@ -50,7 +50,7 @@ class SkiaPreprocessor(object):
 
     SIP_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "src"))
     BUILD_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "build"))
-    MODULES = ("core", "effects")
+    MODULES = ("core", "effects", "gpu")
 
     def generate_code(self, config):
         sip_install_dir = os.path.join(config.default_sip_dir, "skia")

@@ -58,3 +58,4 @@ Others
 - complete core/SkFixed
 - complete core/SkDevice
 - complete core/SkScalar
+- complete gpu/SkGpuDevice
