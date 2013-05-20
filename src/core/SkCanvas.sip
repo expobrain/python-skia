@@ -15,4 +15,7 @@ public:
     };
 
     SkCanvas();
+    explicit SkCanvas(SkDevice* device);
+    explicit SkCanvas(const SkBitmap& bitmap);
+    virtual ~SkCanvas();
 };
