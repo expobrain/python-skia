@@ -2,6 +2,7 @@
 
 from skia.core import (SkBitmap, Sk64, SkRect, SkIRect, SkPixelRef, SkGpuTexture,
     SkColorTable, SkPaint, SkIPoint, SkAutoLockPixels, SkAutoLockColors)
+from tests import assert_not_fail
 import unittest
 
 
@@ -244,14 +245,12 @@ class SkBitmapTests(unittest.TestCase):
         except Exception as e:
             self.fail(e)
 
-    @unittest.skip("FIXME")
+    @assert_not_fail
     def test_set_config(self):
         b = SkBitmap()
-        b.setConfig(SkBitmap.kARGB_8888_Config, 100, 200)
 
-        self.assertEqual(b.config(), SkBitmap.kARGB_8888_Config)
-        self.assertEqual(b.width(), 100)
-        self.assertEqual(b.height(), 200)
+        b.setConfig(SkBitmap.kARGB_8888_Config, 1, 1)
+        b.setConfig(SkBitmap.kARGB_8888_Config, 1, 1, 1)
 
     def test_set_immutable(self):
         b = SkBitmap()
