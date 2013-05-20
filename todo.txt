@@ -32,6 +32,16 @@ SkDeviceProperties
 - implements Geometry.MakeDefault() constructors
 
 
+SkDevice
+--------
+
+- fix createCompatibleDevice()
+- modify getGlobalBounds() to return a SkIRect
+- Deprecated annotation in writePixels() doesn't raise DepracationWarning
+  exception
+- fix accessRenderTarget() unit test
+
+
 SkSize
 ------
 
