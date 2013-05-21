@@ -8,6 +8,7 @@
 %Include SkDevice.sip
 %Include SkDeviceProperties.sip
 %Include SkFixed.sip
+%Include SkMatrix.sip
 %Include SkPaint.sip
 %Include SkPoint.sip
 %Include SkPixelRef.sip
