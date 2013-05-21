@@ -1,6 +1,6 @@
 %Include(name=../config/sk_stdint.sip)
 
-class SkBitmap {
+class SkBitmap /NoDefaultCtors/ {
 
     %TypeHeaderCode
     #include <SkBitmap.h>
@@ -20,7 +20,10 @@ public:
     };
 
     SkBitmap();
-    SkBitmap(SkBitmap& src);
+    SkBitmap(const SkBitmap& src);
+
+    ~SkBitmap();
+
     // Method not exported in Java nor Python: void swap(SkBitmap& other);
     bool empty();
     bool isNull();
