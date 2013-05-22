@@ -1,3 +1,6 @@
+%Include(name=SkPoint.sip)
+
+
 struct SkIRect /NoDefaultCtors/ {
 
     %TypeHeaderCode
@@ -59,9 +62,71 @@ struct SkIRect /NoDefaultCtors/ {
     void sort();
 };
 
-struct SkRect {
+struct SkRect /NoDefaultCtors/ {
 
     %TypeHeaderCode
     #include <SkRect.h>
     %End
+
+    static SkRect MakeEmpty();
+    static SkRect MakeWH(SkScalar w, SkScalar h);
+    static SkRect MakeSize(const SkSize& size);
+    static SkRect MakeLTRB(SkScalar l, SkScalar t, SkScalar r, SkScalar b);
+    static SkRect MakeXYWH(SkScalar x, SkScalar y, SkScalar w, SkScalar h);
+    static SkRect MakeFromIRect(const SkIRect& irect) /Deprecated/ ;
+    static SkRect Make(const SkIRect& irect);
+
+    static bool Intersects(const SkRect& a, const SkRect& b);
+
+    bool isEmpty() const;
+    bool isFinite() const;
+    SkScalar x() const;
+    SkScalar y() const;
+    SkScalar left() const;
+    SkScalar top() const;
+    SkScalar right() const;
+    SkScalar bottom() const;
+    SkScalar width() const;
+    SkScalar height() const;
+    SkScalar centerX() const;
+    SkScalar centerY() const;
+    //void toQuad(SkPoint quad[4]) const;
+    void setEmpty();
+    void set(const SkIRect& src);
+    void set(SkScalar left, SkScalar top, SkScalar right, SkScalar bottom);
+    //void set(const SkPoint pts[], int count);
+    void set(const SkPoint& p0, const SkPoint& p1);
+    void setLTRB(SkScalar left, SkScalar top, SkScalar right, SkScalar bottom);
+    void iset(int left, int top, int right, int bottom);
+    void isetWH(int width, int height);
+    //void setBounds(const SkPoint pts[], int count);
+    //bool setBoundsCheck(const SkPoint pts[], int count);
+    void setXYWH(SkScalar x, SkScalar y, SkScalar width, SkScalar height);
+    void setWH(SkScalar width, SkScalar height);
+    void setLargest();
+    void setLargestInverted();
+    void offset(SkScalar dx, SkScalar dy);
+    void offset(const SkPoint& delta);
+    void offsetTo(SkScalar newX, SkScalar newY);
+    void inset(SkScalar dx, SkScalar dy);
+    void outset(SkScalar dx, SkScalar dy);
+    bool intersect(const SkRect& r);
+    bool intersect(SkScalar left, SkScalar top,
+                   SkScalar right, SkScalar bottom);
+    bool intersect(const SkRect& a, const SkRect& b);
+    bool intersects(SkScalar left, SkScalar top,
+                    SkScalar right, SkScalar bottom) const;
+    void join(SkScalar left, SkScalar top, SkScalar right, SkScalar bottom);
+    void join(const SkRect& r);
+    void growToInclude(const SkRect& r);
+    void growToInclude(SkScalar x, SkScalar y);
+    bool contains(const SkPoint& p) const;
+    bool contains(SkScalar x, SkScalar y) const;
+    bool contains(const SkRect& r) const;
+    void round(SkIRect* dst) const;
+    void roundOut();
+    void roundOut(SkIRect* dst) const;
+    void roundIn(SkIRect* dst) const;
+    void sort();
+    // FIXME: const SkScalar* asScalars() const;
 };

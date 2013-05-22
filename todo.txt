@@ -45,7 +45,11 @@ SkDevice
 SkRect
 ------
 
-- implement __eq__ and __ne__ operators
+- implement __eq__ and __ne__ operators for SkIrect and SkRect classes
+- implement pythonic return value for SkRect.asScalars()
+- DeprecationWarning not raised by SkRect.MakeFromIRect
+- fix asQuad() implementation
+- fix method signatures with arrays
 
 
 SkSize

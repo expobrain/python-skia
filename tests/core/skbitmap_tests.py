@@ -203,7 +203,7 @@ class SkBitmapTests(unittest.TestCase):
             self.fail(e)
 
     def test_get_bounds(self):
-        for rect in (SkRect(), SkIRect.MakeEmpty()):
+        for rect in (SkRect.MakeEmpty(), SkIRect.MakeEmpty()):
             try:
                 SkBitmap().getBounds(rect)
             except Exception as e:
