@@ -42,6 +42,12 @@ SkDevice
 - fix accessRenderTarget() unit test
 
 
+SkRect
+------
+
+- implement __eq__ and __ne__ operators
+
+
 SkSize
 ------
 

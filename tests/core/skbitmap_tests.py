@@ -147,7 +147,8 @@ class SkBitmapTests(unittest.TestCase):
             self.fail(e)
 
     def test_scroll_rect(self):
-        self.assertIsInstance(SkBitmap().scrollRect(SkIRect(), 0, 0), bool)
+        self.assertIsInstance(
+            SkBitmap().scrollRect(SkIRect.MakeEmpty(), 0, 0), bool)
 
     def test_erase_RGB(self):
         try:
@@ -202,7 +203,7 @@ class SkBitmapTests(unittest.TestCase):
             self.fail(e)
 
     def test_get_bounds(self):
-        for rect in (SkRect(), SkIRect()):
+        for rect in (SkRect(), SkIRect.MakeEmpty()):
             try:
                 SkBitmap().getBounds(rect)
             except Exception as e:
