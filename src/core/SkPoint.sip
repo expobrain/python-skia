@@ -4,3 +4,11 @@ class SkIPoint {
     #include <SkPoint.h>
     %End
 };
+
+
+class SkPoint {
+
+    %TypeHeaderCode
+    #include <SkPoint.h>
+    %End
+};
