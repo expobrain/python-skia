@@ -6,8 +6,11 @@ import unittest
 
 class SkSizeTests(unittest.TestCase):
 
+    def test_no_default_ctors(self):
+        self.assertRaises(TypeError, SkSize)
+
     def test_instance(self):
-        self.assertIsInstance(SkSize.Make(1, 1), SkISize)
+        self.assertIsInstance(SkSize.Make(1, 1), SkSize)
 
     def test_to_round(self):
         self.assertIsInstance(SkSize.Make(1, 1).toRound(), SkISize)
