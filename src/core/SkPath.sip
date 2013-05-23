@@ -24,24 +24,14 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-%Module(name=skia.core, keyword_arguments="Optional")
+class SkPath {
 
-%Include Sk64.sip
-%Include SkBitmap.sip
-%Include SkCanvas.sip
-%Include SkColor.sip
-%Include SkColorTable.sip
-%Include SkDevice.sip
-%Include SkDeviceProperties.sip
-%Include SkFixed.sip
-%Include SkMatrix.sip
-%Include SkPaint.sip
-%Include SkPath.sip
-%Include SkPoint.sip
-%Include SkPixelRef.sip
-%Include SkRegion.sip
-%Include SkRect.sip
-%Include SkRRect.sip
-%Include SkScalar.sip
-%Include SkSize.sip
-%Include SkTypes.sip
+    %TypeHeaderCode
+    #include <SkPath.h>
+    %End
+
+public:
+    SkPath();
+    SkPath(const SkPath&);
+    ~SkPath();
+};
