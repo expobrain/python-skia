@@ -79,4 +79,5 @@ Others
 - complete core/SkDevice
 - complete core/SkScalar
 - complete core/SkMatrix
+- complete core/SkRRect
 - complete gpu/SkGpuDevice
