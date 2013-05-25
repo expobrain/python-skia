@@ -73,6 +73,7 @@ Others
 - complete core/SkColor
 - complete core/SkPaint
 - complete core/SkPath
+- complete core/SkPicture
 - complete core/SkPoint
 - complete core/SkPixelRef
 - complete core/SkRegion
