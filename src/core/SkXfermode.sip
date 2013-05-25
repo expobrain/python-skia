@@ -24,25 +24,48 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-%Module(name=skia.core, keyword_arguments="Optional")
+class SkXfermode /NoDefaultCtors/ {
 
-%Include Sk64.sip
-%Include SkBitmap.sip
-%Include SkCanvas.sip
-%Include SkColor.sip
-%Include SkColorTable.sip
-%Include SkDevice.sip
-%Include SkDeviceProperties.sip
-%Include SkFixed.sip
-%Include SkMatrix.sip
-%Include SkPaint.sip
-%Include SkPath.sip
-%Include SkPoint.sip
-%Include SkPixelRef.sip
-%Include SkRegion.sip
-%Include SkRect.sip
-%Include SkRRect.sip
-%Include SkScalar.sip
-%Include SkSize.sip
-%Include SkTypes.sip
-%Include SkXfermode.sip
+    %TypeHeaderCode
+    #include <SkXfermode.h>
+    %End
+
+public:
+    enum Mode {
+        kClear_Mode,
+        kSrc_Mode,
+        kDst_Mode,
+        kSrcOver_Mode,
+        kDstOver_Mode,
+        kSrcIn_Mode,
+        kDstIn_Mode,
+        kSrcOut_Mode,
+        kDstOut_Mode,
+        kSrcATop_Mode,
+        kDstATop_Mode,
+        kXor_Mode,
+        kPlus_Mode,
+        kModulate_Mode,
+
+        kScreen_Mode,
+        kLastCoeffMode = kScreen_Mode,
+
+        kOverlay_Mode,
+        kDarken_Mode,
+        kLighten_Mode,
+        kColorDodge_Mode,
+        kColorBurn_Mode,
+        kHardLight_Mode,
+        kSoftLight_Mode,
+        kDifference_Mode,
+        kExclusion_Mode,
+        kMultiply_Mode,
+        kLastSeparableMode = kMultiply_Mode,
+
+        kHue_Mode,
+        kSaturation_Mode,
+        kColor_Mode,
+        kLuminosity_Mode,
+        kLastMode = kLuminosity_Mode
+    };
+};
