@@ -34,3 +34,4 @@ class SkPaintTests(unittest.TestCase):
 
     def test_instance(self):
         self.assertIsInstance(SkPaint(), SkPaint)
+        self.assertIsInstance(SkPaint(SkPaint()), SkPaint)
