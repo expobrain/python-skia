@@ -71,6 +71,7 @@ Others
 ------
 
 - complete core/SkColor
+- complete core/SkBounder
 - complete core/SkPaint
 - complete core/SkPath
 - complete core/SkPicture
