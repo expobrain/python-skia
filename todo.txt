@@ -19,6 +19,13 @@ SkBitmap
 - fix signature SkAutoLockColors(SkColorTable* ctable)
 
 
+SkCanvas
+--------
+
+- Fix segmentation faults in: save(), saveLayer(), saveLayerAlpha(),
+  restoreToCount(), concat(), setMaztrix(), clipRect()
+
+
 Sk64
 ----
 
