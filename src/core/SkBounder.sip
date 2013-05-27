@@ -24,6 +24,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+struct SkGlyph;
+
+
 class SkBounder /NoDefaultCtors/ {
 
     %TypeHeaderCode
@@ -32,4 +35,7 @@ class SkBounder /NoDefaultCtors/ {
 
 public:
     SkBounder();
+
+    bool doIRect(const SkIRect&);
+    bool doIRectGlyph(const SkIRect& , int x, int y, const SkGlyph&);
 };

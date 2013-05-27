@@ -26,11 +26,23 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
-from skia.core import SkBounder
+from skia.core import SkBounder, SkIRect, SkGlyph
 import unittest
 
 
 class SkBounderTests(unittest.TestCase):
 
+    @property
+    def bounder(self):
+        return SkBounder()
+
     def test_instance(self):
         self.assertIsInstance(SkBounder(), SkBounder)
+
+    def test_do_irect(self):
+        self.assertIsInstance(self.bounder.doIRect(SkIRect.MakeEmpty()), bool)
+
+    @unittest.skip("FIXME")
+    def test_do_irect_glyph(self):
+        self.assertIsInstance(
+            self.bounder.doIRect(SkIRect.MakeEmpty(), 1, 1, SkGlyph()), bool)

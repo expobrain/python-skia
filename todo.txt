@@ -23,7 +23,7 @@ SkCanvas
 --------
 
 - Fix segmentation faults in: save(), saveLayer(), saveLayerAlpha(),
-  restoreToCount(), concat(), setMaztrix(), clipRect()
+  restoreToCount(), concat(), setMatrix(), clipRect()
 
 
 Sk64
@@ -63,7 +63,12 @@ SkSize
 ------
 
 - SkTSize is not exported
-_ implement SkSize.__eq__ operator
+
+
+SkBounder
+---------
+
+- fix SkGlyph definition
 
 
 SkColorTable
