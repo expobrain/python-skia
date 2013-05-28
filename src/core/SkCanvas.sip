@@ -65,7 +65,7 @@ public:
         kComplex_ClipType
     };
 
-    class ClipVisitor /Abstarct/ {
+    class ClipVisitor /Abstract/ {
     public:
         virtual ~ClipVisitor();
         virtual void clipRect(const SkRect&, SkRegion::Op, bool antialias) = 0;
