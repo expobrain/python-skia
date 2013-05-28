@@ -24,31 +24,19 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-%Module(name=skia.core, keyword_arguments="Optional")
+class SkString /NoDefaultCtors/ {
 
-%Include Sk64.sip
-%Include SkBitmap.sip
-%Include SkBounder.sip
-%Include SkCanvas.sip
-%Include SkClipStack.sip
-%Include SkColor.sip
-%Include SkColorTable.sip
-%Include SkDevice.sip
-%Include SkDeviceProperties.sip
-%Include SkDrawFilter.sip
-%Include SkFixed.sip
-%Include SkMatrix.sip
-%Include SkPaint.sip
-%Include SkPath.sip
-%Include SkPicture.sip
-%Include SkPoint.sip
-%Include SkPixelRef.sip
-%Include SkRegion.sip
-%Include SkRect.sip
-%Include SkRefCnt.sip
-%Include SkRRect.sip
-%Include SkScalar.sip
-%Include SkSize.sip
-%Include SkString.sip
-%Include SkTypes.sip
-%Include SkXfermode.sip
+    %TypeHeaderCode
+    #include <SkString.h>
+    %End
+
+public:
+    SkString();
+    explicit SkString(size_t len);
+    // FIXME: explicit SkString(const char text[]);
+    // FIXME: SkString(const char text[], size_t len);
+    SkString(const SkString&);
+
+    ~SkString();
+
+};

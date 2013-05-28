@@ -97,5 +97,6 @@ Others
 - complete core/SkMatrix
 - complete core/SkRRect
 - complete core/SkRefCnt
+- complete core/SkString
 - complete core/SkXfermode
 - complete gpu/SkGpuDevice
