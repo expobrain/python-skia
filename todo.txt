@@ -96,5 +96,6 @@ Others
 - complete core/SkScalar
 - complete core/SkMatrix
 - complete core/SkRRect
+- complete core/SkRefCnt
 - complete core/SkXfermode
 - complete gpu/SkGpuDevice
