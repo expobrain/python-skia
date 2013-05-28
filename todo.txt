@@ -83,7 +83,6 @@ Others
 ------
 
 - complete core/SkColor
-- complete core/SkBounder
 - complete core/SkClipStack
 - complete core/SkPaint
 - complete core/SkPath
