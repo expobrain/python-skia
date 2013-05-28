@@ -71,6 +71,12 @@ SkBounder
 - fix SkGlyph definition
 
 
+SkAdvancedTypefaceMetrics
+-------------------------
+
+- export AdvanceMetric struct
+
+
 SkColorTable
 ------------
 

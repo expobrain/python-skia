@@ -27,6 +27,7 @@
 %Module(name=skia.core, keyword_arguments="Optional")
 
 %Include Sk64.sip
+%Include SkAdvancedTypefaceMetrics.sip
 %Include SkBitmap.sip
 %Include SkBounder.sip
 %Include SkCanvas.sip

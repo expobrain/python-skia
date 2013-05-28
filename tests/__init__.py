@@ -14,3 +14,12 @@ def assert_not_fail(fn):
             args[0].fail(e)
 
     return wrapper
+
+
+class SkiaTestMixin(object):
+
+    def assertHasEnum(self, cls, enum, members):
+        self.assertTrue(hasattr(cls, enum))
+
+        for member in members:
+            self.assertTrue(hasattr(cls, member))
