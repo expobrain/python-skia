@@ -24,10 +24,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-%Include(name=SkRefCnt.sip)
 
-
-class SkAdvancedTypefaceMetrics : SkRefCnt /NoDefaultCtors/ {
+class SkAdvancedTypefaceMetrics /NoDefaultCtors/ {
 
     %TypeHeaderCode
     #include <SkAdvancedTypefaceMetrics.h>
